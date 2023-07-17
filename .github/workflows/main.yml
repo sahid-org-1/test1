@@ -1,33 +1,55 @@
-name: submodule update
-
+name: github submodule update
 on:
-  workflow_dispatch:
-    inputs:
-      LMS_branch:
-        description: 'lms'     
-        required: true
-        default: 'staging'
-        
-      scorm_branch:
-        description: 'scorm'     
-        required: true
-        default: 'staging'
-        
-      frontend_branch:
-        description: 'frontend'     
-        required: true
-        default:         
-      git_username:
-        required: true
+  workflow_dispatch:
+
+inputs:
+  LMS_branch:
+    description: 'lms'     
+    required: true
+    default: 'staging'
+    type: choice
+    description: 'Choose LMS BRANCH name'
+       
+  scorm_branch:
+    description: 'scorm'     
+    required: true
+    default: 'staging'
+    type: choice
+    description: 'Choose SCORM BRANCH name'
+  frontend_branch:
+    description: 'frontend'     
+    required: true
+    default: 'staging'
+    type: choice
+    description: 'Choose frontend BRANCH name'            
+  token:
+    description: 'Token'     
+    required: true
+  git_username:
+    description: 'Username for git'
+    required: true
 
 env:
   CI: false
   TOKEN: ${{ github.event.inputs.token }}
   USERNAME: ${{ github.event.inputs.git_username }}
+  LMS_Branch: ${{ github.event.inputs.LMS_branch }}
+  scorm_Branch: ${{ github.event.inputs.scorm_branch }}
+  frontend_Branch: ${{ github.event.inputs.frontend_branch }}
 
 jobs:
-  printInputs:
+  # This workflow contains a single job called "build"
+  build:
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - run: |
-        echo $TOKEN,$USERNAME
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo $USERNAME,
+          ls
+          echo $GITHUB_WORKSPACE
