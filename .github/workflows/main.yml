@@ -1,38 +1,25 @@
 name: submodule update
 
 on:
-
   workflow_dispatch:
     inputs:
       LMS_branch:
         description: 'lms'     
         required: true
         default: 'staging'
-        type: choice
-        description: 'Choose LMS BRANCH name'
-       
+        
       scorm_branch:
         description: 'scorm'     
         required: true
         default: 'staging'
-        type: choice
-        description: 'Choose SCORM BRANCH name'
+        
       frontend_branch:
         description: 'frontend'     
         required: true
-        default: 'staging'
-        type: choice
-        description: 'Choose frontend BRANCH name'            
-      token:
-        description: 'Token'     
-        required: true
+        default:         
       git_username:
-        description: 'Username for git'
         required: true
 
-
-      
-      
 env:
   CI: false
   TOKEN: ${{ github.event.inputs.token }}
