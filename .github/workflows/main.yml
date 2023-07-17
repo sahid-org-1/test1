@@ -24,14 +24,11 @@ env:
   CI: false
   TOKEN: ${{ github.event.inputs.token }}
   USERNAME: ${{ github.event.inputs.git_username }}
-  LMS_Branch: ${{ github.event.inputs.LMS_branch }}
-  scorm_Branch: ${{ github.event.inputs.scorm_branch }}
-  frontend_Branch: ${{ github.event.inputs.frontend_branch }}
 
 jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo $LMS_Branch,$scorm_Branch
+        echo $TOKEN,$USERNAME
         
