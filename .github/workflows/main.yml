@@ -1,6 +1,6 @@
 name: github submodule update
 on:
-  push:
+  workflow_dispatch:
     inputs:
       branch1:
         description: 'Branch name for repository 1'
@@ -12,17 +12,17 @@ on:
         description: 'Branch name for repository 3'
         required: true
 jobs:
-  clone_repos:
+ build:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
       uses: actions/checkout@v2
 
     - name: Clone Repository 1
-      run: git clone --branch ${{ inputs.branch1 }} https://github.com/sahid-org-1/test1.git
+      run: git clone --branch ${{ github.event.inputs.branch1 }} https://github.com/sahid-org-1/test1.git
 
     - name: Clone Repository 2
-      run: git clone --branch ${{ inputs.branch2 }} https://github.com/SahidTft/github-webhook.git
+      run: git clone --branch ${{ github.event.inputs.branch2 }} https://github.com/SahidTft/github-webhook.git
 
     - name: Clone Repository 3
-      run: git clone --branch ${{ inputs.branch3 }} https://github.com/SahidTft/git_task1
+      run: git clone --branch ${{ github.event.inputs.branch3 }} https://github.com/SahidTft/git_task1
