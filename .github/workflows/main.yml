@@ -2,54 +2,30 @@ name: github submodule update
 on:
   workflow_dispatch:
 
-inputs:
-  LMS_branch:
-    description: 'lms'     
-    required: true
-    default: 'staging'
-    type: choice
-    description: 'Choose LMS BRANCH name'
-       
-  scorm_branch:
-    description: 'scorm'     
-    required: true
-    default: 'staging'
-    type: choice
-    description: 'Choose SCORM BRANCH name'
-  frontend_branch:
-    description: 'frontend'     
-    required: true
-    default: 'staging'
-    type: choice
-    description: 'Choose frontend BRANCH name'            
-  token:
-    description: 'Token'     
-    required: true
-  git_username:
-    description: 'Username for git'
-    required: true
-
-env:
-  CI: false
-  TOKEN: ${{ github.event.inputs.token }}
-  USERNAME: ${{ github.event.inputs.git_username }}
-  LMS_Branch: ${{ github.event.inputs.LMS_branch }}
-  scorm_Branch: ${{ github.event.inputs.scorm_branch }}
-  frontend_Branch: ${{ github.event.inputs.frontend_branch }}
-
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  clone_repos:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+    inputs:
+      branch1:
+        description: 'Branch name for repository 1'
+        required: true
+      branch2:
+        description: 'Branch name for repository 2'
+        required: true
+      branch3:
+        description: 'Branch name for repository 3'
+        required: true
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo $USERNAME,
-          ls
-          echo $GITHUB_WORKSPACE
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Clone Repository 1
+      run: git clone --branch ${{ inputs.branch1 }} https://github.com/sahid-org-1/test1.git repo1
+
+    - name: Clone Repository 2
+      run: git clone --branch ${{ inputs.branch2 }} https://github.com/SahidTft/github-webhook.git repo2
+
+    - name: Clone Repository 3
+      run: git clone --branch ${{ inputs.branch3 }} https://github.com/SahidTft/git_task1 repo3
