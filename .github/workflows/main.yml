@@ -1,0 +1,27 @@
+name: Build and Deploy to ECR
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      branch1:
+        description: 'Branch name for repository 1'
+        required: true
+      branch2:
+        description: 'Branch name for repository 2'
+        required: true
+      branch3:
+        description: 'Branch name for repository 3'
+        required: true
+jobs:
+        
+ build:
+    
+    name: Build Image
+    runs-on: ubuntu-latest
+    steps:
+     - name: Check out code
+       uses: actions/checkout@v2
+
+     - name: Clone Repository 1
+       run: git clone --branch ${{ github.event.inputs.branch1 }} https://github.com/sahid-org-1/test1.git repo1
