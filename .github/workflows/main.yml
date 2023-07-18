@@ -2,10 +2,6 @@ name: github submodule update
 on:
   workflow_dispatch:
 
-jobs:
-  clone_repos:
-    runs-on: ubuntu-latest
-
     inputs:
       branch1:
         description: 'Branch name for repository 1'
@@ -16,7 +12,9 @@ jobs:
       branch3:
         description: 'Branch name for repository 3'
         required: true
-
+jobs:
+  clone_repos:
+    runs-on: ubuntu-latest
     steps:
     - name: Check out code
       uses: actions/checkout@v2
