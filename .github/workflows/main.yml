@@ -25,7 +25,7 @@ jobs:
 
      - name: Clone LMS
        run: git clone --branch ${{ github.event.inputs.branch1 }} https://github.com/sahid-org-1/test1.git
-       
+
      - name: Clone frontend
        run: git clone --branch ${{ github.event.inputs.branch2 }} https://github.com/SahidTft/git_task1.git
        
