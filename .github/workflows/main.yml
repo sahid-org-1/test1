@@ -16,9 +16,6 @@ on:
       Username:
         description: 'Enter your github user'
         required: true
-      Token:
-        description: 'Enter your github token'
-        required: true
 jobs:
         
  build:
@@ -30,19 +27,21 @@ jobs:
        uses: actions/checkout@v3
 
      - name: Clone LMS
-       run: git clone --branch ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ github.event.inputs.Token }}@github.com/sahid-org-1/test1.git
+       run: git clone --branch ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
 
      - name: Clone frontend
-       run: git clone --branch ${{ github.event.inputs.branch2 }} https://${{ github.event.inputs.Username }}:${{ github.event.inputs.Token }}@github.com/SahidTft/git_task1.git
+       run: git clone --branch ${{ github.event.inputs.branch2 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/SahidTft/git_task1.git
        
      - name: Clone scorm
-       run: git clone --branch ${{ github.event.inputs.branch3 }} https://${{ github.event.inputs.Username }}:${{ github.event.inputs.Token }}@github.com/SahidTft/github-webhook.git
+       run: git clone --branch ${{ github.event.inputs.branch3 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/SahidTft/github-webhook.git
      - name: Commit files
        run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
+          git config --local user.email "khan..sahid@tftus.com"
+          git config --local user.name "sahidTft"
+          git commit -a -m "Add changes"
      - name: Push changes
        uses: ad-m/github-push-action@master
        with:
-        force_with_lease: true
+          github_token: ${{ secrets.TOKEN }}
+          repository: "https://github.com/sahid-org-1/test1.git"
+          force_with_lease: true
