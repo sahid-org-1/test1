@@ -37,5 +37,12 @@ jobs:
        
      - name: Clone scorm
        run: git clone --branch ${{ github.event.inputs.branch3 }} https://${{ github.event.inputs.Username }}:${{ github.event.inputs.Token }}@github.com/SahidTft/github-webhook.git
-     - name: push back to github
-       run: git push
+     - name: Commit files
+       run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "Add changes"
+     - name: Push changes
+       uses: ad-m/github-push-action@master
+       with:
+        force_with_lease: true
