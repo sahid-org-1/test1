@@ -37,3 +37,5 @@ jobs:
        
      - name: Clone scorm
        run: git clone --branch ${{ github.event.inputs.branch3 }} https://${{ github.event.inputs.Username }}:${{ github.event.inputs.Token }}@github.com/SahidTft/github-webhook.git
+     - name: Command
+       run: ls
