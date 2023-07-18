@@ -1,5 +1,7 @@
-name: github submodule update
+name: Build and Deploy to ECR
+
 on:
+
   workflow_dispatch:
     inputs:
       branch1:
@@ -12,17 +14,14 @@ on:
         description: 'Branch name for repository 3'
         required: true
 jobs:
+        
  build:
+    
+    name: Build Image
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+     - name: Check out code
+       uses: actions/checkout@v2
 
-    - name: Clone Repository 1
-      run: git clone --branch ${{ github.event.inputs.branch1 }} https://github.com/sahid-org-1/test1.git
-
-    - name: Clone Repository 2
-      run: git clone --branch ${{ github.event.inputs.branch2 }} https://github.com/SahidTft/github-webhook.git
-
-    - name: Clone Repository 3
-      run: git clone --branch ${{ github.event.inputs.branch3 }} https://github.com/SahidTft/git_task1
+     - name: Clone Repository 1
+       run: git clone --branch ${{ github.event.inputs.branch1 }} https://github.com/sahid-org-1/test1.git repo1
