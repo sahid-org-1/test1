@@ -38,10 +38,6 @@ jobs:
        run: |
           git config --local user.email "khan..sahid@tftus.com"
           git config --local user.name "sahidTft"
+          git add .
           git commit -a -m "Add changes"
-     - name: Push changes
-       uses: ad-m/github-push-action@master
-       with:
-          github_token: ${{ secrets.TOKEN }}
-          repository: sahid-org-1/test1
-          force_with_lease: true
+          git push https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git 
