@@ -1,0 +1,6 @@
+[submodule "github-webhook"]
+	path = github-webhook
+	url = https://github.com/SahidTft/github-webhook.git
+[submodule "git_task1"]
+	path = git_task1
+	url = https://github.com/SahidTft/git_task1.git
