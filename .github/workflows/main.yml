@@ -43,5 +43,5 @@ jobs:
        uses: ad-m/github-push-action@master
        with:
           github_token: ${{ secrets.TOKEN }}
-          repository: "https://github.com/sahid-org-1/test1.git"
+          repository: sahid-org-1/test1.git
           force_with_lease: true
