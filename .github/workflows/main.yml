@@ -1,7 +1,6 @@
 name: github submodule update
 on:
-  workflow_dispatch:
-
+  push:
     inputs:
       branch1:
         description: 'Branch name for repository 1'
