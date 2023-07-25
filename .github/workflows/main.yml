@@ -43,6 +43,8 @@ jobs:
      - name: Commit changes
        shell: bash
        run: |
+        git config --global user.email "khan.sahid@tftus.com"
+        git config --global user.name "${{ github.event.inputs.Username }}"
         git commit -m "Update code"
 
      - name: Push changes
