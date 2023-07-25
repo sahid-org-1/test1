@@ -49,5 +49,7 @@ jobs:
 
      - name: Push changes
        shell: bash
+       env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
        run: |
-         git push --set-upstream origin ${{ github.event.inputs.branch1 }}
+         git push
