@@ -31,3 +31,17 @@ jobs:
        
      - name: Clone scorm
        run: git clone --branch ${{ github.event.inputs.branch3 }} https://github.com/SahidTft/github-webhook.git
+     - name: Add changes
+       shell: bash
+       run: |
+        git add .
+
+     - name: Commit changes
+       shell: bash
+       run: |
+        git commit -m "Update code"
+
+     - name: Push changes
+       shell: bash
+       run: |
+         git push
