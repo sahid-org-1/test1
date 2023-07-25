@@ -50,4 +50,4 @@ jobs:
      - name: Push changes
        shell: bash
        run: |
-         git push
+         git push --set-upstream origin ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
