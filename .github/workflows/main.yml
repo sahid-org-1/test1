@@ -34,10 +34,18 @@ jobs:
        
      - name: Clone scorm
        run: git clone --branch ${{ github.event.inputs.branch3 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/SahidTft/github-webhook.git
-     - name: Commit files
+
+     - name: Add changes
+       shell: bash
        run: |
-          git config --local user.email "khan..sahid@tftus.com"
-          git config --local user.name "sahidTft"
-          git add .
-          git commit -a -m "Add changes"
-          git push https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git 
+        git add .
+
+     - name: Commit changes
+       shell: bash
+       run: |
+        git commit -m "Update code"
+
+     - name: Push changes
+       shell: bash
+       run: |
+         git push
