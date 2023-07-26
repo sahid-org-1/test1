@@ -38,6 +38,7 @@ jobs:
      - name: Add changes
        shell: bash
        run: |
+        ls
         git add .
 
      - name: Commit changes
