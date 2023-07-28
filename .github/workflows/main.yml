@@ -23,7 +23,12 @@ jobs:
     if: ${{ github.event.inputs.branch1 == 'master' }}
     steps:
      - name: print hello
-       run: echo "skip"  
+       run: echo "skip"
+     - name: Show GitHub context   
+       env: 
+         GITHUB_CONTEXT: ${{ toJson(github) }}   
+         run: echo "$GITHUB_CONTEXT"
+         shell: bash 
   build:
     name: clone repo
     runs-on: ubuntu-latest
@@ -31,7 +36,13 @@ jobs:
     steps:
      - name: Check out code
        uses: actions/checkout@v3
-
+       
+     - name: Show GitHub context   
+       env: 
+         GITHUB_CONTEXT: ${{ toJson(github) }}   
+         run: echo "$GITHUB_CONTEXT"
+         shell: bash
+         
      - name: Clone LMS
        run: git clone --branch ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
 
