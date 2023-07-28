@@ -17,11 +17,17 @@ on:
         description: 'Enter your github user'
         required: true
 jobs:
-        
- build:
-    
+  master-build:
+    name: condition
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.branch1 == master }}
+    steps:
+     - name: print hello
+       run: echo "skip"  
+  build:
     name: clone repo
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.branch1 != master }}
     steps:
      - name: Check out code
        uses: actions/checkout@v3
