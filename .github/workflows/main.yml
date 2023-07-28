@@ -27,8 +27,7 @@ jobs:
      - name: Show GitHub context   
        env: 
          GITHUB_CONTEXT: ${{ toJson(github) }}   
-         run: echo "$GITHUB_CONTEXT"
-         shell: bash 
+       run: echo "$GITHUB_CONTEXT"
   build:
     name: clone repo
     runs-on: ubuntu-latest
@@ -40,8 +39,7 @@ jobs:
      - name: Show GitHub context   
        env: 
          GITHUB_CONTEXT: ${{ toJson(github) }}   
-         run: echo "$GITHUB_CONTEXT"
-         shell: bash
+       run: echo "$GITHUB_CONTEXT"
          
      - name: Clone LMS
        run: git clone --branch ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
