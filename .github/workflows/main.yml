@@ -13,9 +13,6 @@ on:
       branch3:
         description: 'Branch name for Frontend'
         required: true
-      Username:
-        description: 'Enter your github user'
-        required: true
 jobs:
   master-build:
     name: condition
@@ -42,19 +39,21 @@ jobs:
        run: echo "$GITHUB_CONTEXT"
          
      - name: Clone LMS
-       run: git clone --branch ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
-     - name: Clone LMS
+       run: git clone --branch ${{ github.event.inputs.branch1 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
+     - name: Changing directory
        run: | 
          ls
          cd app/repos/
          rm -rf git_task1 github-webhook
      - name: Clone frontend
        run: |
-         ls
-         git clone --branch ${{ github.event.inputs.branch2 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/SahidTft/git_task1.git
+         cd app/repos
+         git clone --branch ${{ github.event.inputs.branch2 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/SahidTft/git_task1.git
        
      - name: Clone scorm
-       run: git clone --branch ${{ github.event.inputs.branch3 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/SahidTft/github-webhook.git
+       run: |
+         cd app/repos
+         git clone --branch ${{ github.event.inputs.branch3 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/SahidTft/github-webhook.git
 
      - name: Add changes
        shell: bash
@@ -66,7 +65,7 @@ jobs:
        shell: bash
        run: |
         git config --global user.email "khan.sahid@tftus.com"
-        git config --global user.name "${{ github.event.inputs.Username }}"
+        git config --global user.name "${GITHUB_ACTOR}"
         git commit -m "Update code"
 
      - name: Push changes
