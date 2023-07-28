@@ -45,7 +45,8 @@ jobs:
        run: git clone --branch ${{ github.event.inputs.branch1 }} https://${{ github.event.inputs.Username }}:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
      - name: Clone LMS
        run: | 
-         cd ~/test1/app/repos/
+         ls
+         cd ./test1/app/repos/
          rm -rf git_task1 github-webhook
      - name: Clone frontend
        run: |
