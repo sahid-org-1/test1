@@ -46,8 +46,8 @@ jobs:
      - name: Clone LMS
        run: | 
          ls
-#         cd ./test1/app/repos/
-#         rm -rf git_task1 github-webhook
+         cd app/repos/
+         rm -rf git_task1 github-webhook
      - name: Clone frontend
        run: |
          ls
