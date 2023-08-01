@@ -40,37 +40,45 @@ jobs:
          
 #      - name: Clone LMS
 #        run: git clone --branch ${{ github.event.inputs.branch1 }} https://:${{ secrets.TOKEN }}@github.com/sahid-org-1/test1.git
-     - name: Changing directory
-       run: | 
-         ls
-         cd app/repos/
-         rm -rf git_task1 github-webhook
-     - name: Clone frontend
-       run: |
-         cd app/repos
-         git clone --branch ${{ github.event.inputs.branch2 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/SahidTft/git_task1.git
+     # - name: Changing directory
+     #   run: | 
+     #     ls
+     #     cd app/repos/
+     #     rm -rf git_task1 github-webhook
+     # - name: Clone frontend
+     #   run: |
+     #     cd app/repos
+     #     git clone --branch ${{ github.event.inputs.branch2 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/SahidTft/git_task1.git
        
-     - name: Clone scorm
-       run: |
-         cd app/repos
-         git clone --branch ${{ github.event.inputs.branch3 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/SahidTft/github-webhook.git
+     # - name: Clone scorm
+     #   run: |
+     #     cd app/repos
+     #     git clone --branch ${{ github.event.inputs.branch3 }} https://${GITHUB_ACTOR}:${{ secrets.TOKEN }}@github.com/SahidTft/github-webhook.git
 
-     - name: Add changes
-       shell: bash
-       run: |
-        ls
-        git add .
+     # - name: Add changes
+     #   shell: bash
+     #   run: |
+     #    ls
+     #    git add .
 
-     - name: Commit changes
-       shell: bash
-       run: |
-        git config --global user.email "khan.sahid@tftus.com"
-        git config --global user.name "${GITHUB_ACTOR}"
-        git commit -m "Update code"
+     # - name: Commit changes
+     #   shell: bash
+     #   run: |
+     #    git config --global user.email "khan.sahid@tftus.com"
+     #    git config --global user.name "${GITHUB_ACTOR}"
+     #    git commit -m "Update code"
 
-     - name: Push changes
-       uses: ad-m/github-push-action@master
+     # - name: Push changes
+     #   uses: ad-m/github-push-action@master
+     #   with:
+     #    github_token: ${{ secrets.TOKEN }}
+     #    branch: ${{ github.ref }}
+     #    force: true
+     - name: Create Pull Request
+       uses: peter-evans/create-pull-request@v5
        with:
-        github_token: ${{ secrets.TOKEN }}
-        branch: ${{ github.ref }}
-        force: true
+        token: ${{ secrets.TOKEN }}
+        commit-message: Auto Pull Request
+        title: pr for submodule update
+        body: Auto-created Pull Request
+        branch: master
